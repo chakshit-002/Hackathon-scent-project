@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+
+@font-face {
+    font-family: cinzel;
+    src: url('./assets/fonts/font1/Cinzel-Black.otf');
+    font-weight:600 ;
+}
+
+@font-face {
+    font-family: cinzel;
+    src: url('./assets/fonts/font1/Cinzel-Regular.otf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: cinzel;
+    src: url('./assets/fonts/font1/CinzelDecorative-Black.otf');
+    font-weight: 700 ;
+}
+@font-face {
+    font-family: cinzel;
+    src: url('./assets/fonts/font1/CinzelDecorative-Regular.otf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: garet;
+    src: url('./assets/fonts/font2/Garet-Book.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: garet;
+    src: url('./assets/fonts/font2/Garet-Heavy.ttf');
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: kenyan;
+    src: url('./assets/fonts/font3/Kenyan\ Coffee\ Rg.otf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: kenyan;
+    src: url('./assets/fonts/font3/Kenyan\ Coffee\ Bd.otf');
+    font-weight: 800;
+}
+@font-face {
+    font-family: TBF;
+    src: url('./assets/fonts/font4/THEBOLDFONT-FREEVERSION.ttf');
+    font-weight: 800;
+}
+
+@keyframes marquee {
+  0% { left: 100%; }
+  100% { left: -640px; }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 10s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+.text-clamp {
+  font-size: clamp(16px, 5vw, 30px);
+}
+
+/* Hide scrollbar for Webkit browsers */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+/* Optional: add scrollbar styles */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #9ca3af; /* Tailwind gray-400 */
+  border-radius: 9999px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background-color: #f3f4f6; /* Tailwind gray-100 */
+}
+
+
+
+
+/* prodcuts tab  */
+
+/* Perspective for container 3D depth */
+.perspectiveWrapper {
+  perspective: 1000px;
+}
+
+/* Responsive tab buttons container flex-wrap and sizing */
+@media (max-width: 500px) {
+  .tabs-container {
+    flex-wrap: wrap;
+  }
+  /* Remove skew from container on small screens */
+  .skew-container {
+    transform: none !important;
+  }
+  /* Tab button sizes for 2 + 1 layout */
+  .tabs-container > button {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+  .tabs-container > button:last-child {
+    flex: 0 0 100%;
+    /* max-width: 100%; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* Remove skew from buttons on small screens */
+  .skew-button-base {
+    transform: none !important;
+  }
+}
+
+/* Above 500px - apply skew (15deg) for container and tab buttons */
+@media (min-width: 501px) {
+  .skew-container {
+    transform: skewX(15deg);
+  }
+  .skew-button-base {
+    transform: skewX(-15deg);
+    /* Keep other scale / hover transforms combined in inline styles */
+  }
+}
