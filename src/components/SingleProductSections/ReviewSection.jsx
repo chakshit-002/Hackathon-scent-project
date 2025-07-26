@@ -1,43 +1,4 @@
-// import UserReview from "./UserReview";
 
-// function ReviewsSection() {
-//   return (
-//     <section className="space-y-4">
-//       <UserReview
-//         name="Sara Kapoor"
-//         rating={5}
-//         review="Absolutely love this fragrance! Lasts all day and feels luxurious."
-//         date="24 July 2025"
-//         avatar="https://randomuser.me/api/portraits/women/44.jpg"
-//       />
-//       <UserReview
-//         name="Ravi Singh"
-//         rating={4}
-//         review="Fresh and long-lasting, but a bit too sweet for my taste."
-//         date="22 July 2025"
-//       />
-//        <UserReview
-//         name="ARavi Singh"
-//         rating={4}
-//         review="Fresh and long-lasting, but a bit too sweet for my taste."
-//         date="22 July 2025"
-//       />
-//        <UserReview
-//         name="Rai ingh"
-//         rating={4}
-//         review="Fresh and long-lasting, but a bit too sweet for my taste."
-//         date="22 July 2025"
-//       />
-//        <UserReview
-//         name="gRavi Singh"
-//         rating={4}
-//         review="Fresh and long-lasting, but a bit too sweet for my taste."
-//         date="22 July 2025"
-//       />
-//       {/* Add more <UserReview /> components as needed */}
-//     </section>
-//   );
-// }
 import UserReview from "./UserReview";
 
 function ReviewsSection({ reviews }) {

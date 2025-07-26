@@ -121,23 +121,7 @@ const ProductsCarousel = () => {
           touchAction: "pan-y",
         }}
       >
-        {/* {cards.map((i, idx) => (
-          <div
-            key={`${i}-${idx}`}
-            style={cardStyle}
-            className="bg-white rounded-md border shadow-sm hover:shadow-xl hover:scale-105 transform transition-transform duration-300"
-          >
-
-            {BestProductsDets.map((product, i) => (
-              <SingleProductCard
-                key={product.id}
-                productDet={product}
-
-              />
-
-            ))}
-          </div>
-        ))} */}
+        
       
         {cards.map((product, idx) => (
           <div

@@ -1,6 +1,4 @@
 
-
-
 import React from 'react';
 import rightImg from '../../assets/webpImagesPerfume/man3.webp';
 

@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -40,7 +40,17 @@ const reviewData = [
 
 const SingleProduct = () => {
 
-  const headingRef = useRef(null);
+  const hasScrolledToTop = useRef(false);
+ const headingRef = useRef(null);
+  // ✅ Scroll to top once on mount without triggering GSAP issues
+  useLayoutEffect(() => {
+    if (location.pathname === "/productDetails" && !hasScrolledToTop.current) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      hasScrolledToTop.current = true;
+    }
+  }, [location.pathname]);
+
+ 
 
   useEffect(() => {
     if (!headingRef.current) return;
@@ -81,9 +91,9 @@ const SingleProduct = () => {
         <h2 ref={headingRef} className='text-center text-[#2f2f2f]  text-3xl font-semibold min-[333px]:text-4xl min-[450px]:text-5xl sm:text-6xl xl:text-7xl 2xl:text-8xl'>How To Apply ?</h2>
         <PerfumeTipsSection />
       </div>
- 
 
-    <div className="mt-10 sm:mt-15 md:mt-18 xl:mt-25 2xl:mt-34" > <FeatureHighlights /></div>
+
+      <div className="mt-10 sm:mt-15 md:mt-18 xl:mt-25 2xl:mt-34" > <FeatureHighlights /></div>
       <div className='relative  mt-10 sm:mt-15 md:mt-18 xl:mt-25 2xl:mt-34'>
         <CurvedLoop
           marqueeText="David ✦ Beckham ✦ Signature ✦ Scents ✦ David ✦ Beckham ✦ Signature ✦ Scents ✦"
@@ -94,7 +104,7 @@ const SingleProduct = () => {
           className="custom-text-style"
           cardClass="h-[200px] bg-red-400"
         />
-        
+
       </div>
 
       <div className='font-[cinzel] tracking-wide sm:px-5 flex flex-col items-center  mt-10 sm:mt-15 md:mt-18 xl:mt-25 2xl:mt-34'>
@@ -114,7 +124,7 @@ const SingleProduct = () => {
       <div className="flex justify-center  mt-10 sm:mt-15 md:mt-18 xl:mt-25 2xl:mt-34">
         <ReviewsSection reviews={reviewData} />
       </div>
-      
+
 
     </div>
   )

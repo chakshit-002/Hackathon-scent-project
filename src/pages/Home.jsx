@@ -77,6 +77,3 @@ const Home = () => {
 export default Home
 
 
-// <h1 className='text-[15rem] text-center  font-bold'>
-// VÉRITTÉ ROYAL
-// </h1>

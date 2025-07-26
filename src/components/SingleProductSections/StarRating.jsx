@@ -40,16 +40,3 @@ export default function StarRating({ rating, setRating, max = 5, className = "",
 }
 
 
-// import React, { useState } from "react";
-// import StarRating from "./StarRating";
-
-// function ProductCard() {
-//   const [rating, setRating] = useState(0);
-//   return (
-//     <div className="p-4 border rounded max-w-xs">
-//       <h2 className="font-bold mb-2">Jasmine Dream Perfume</h2>
-//       <StarRating rating={rating} setRating={setRating} />
-//       <p className="text-sm text-gray-500 mt-2">{rating > 0 ? `You rated: ${rating}/5` : "No rating yet."}</p>
-//     </div>
-//   );
-// }

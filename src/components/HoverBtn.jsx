@@ -10,7 +10,7 @@ const svgss = [
       viewBox="0 0 20 20"
       preserveAspectRatio="none"
       fill="none"
-      class="app-gr-img"
+      className="app-gr-img"
     >
       <circle
         cx="10"
@@ -42,7 +42,7 @@ const svgss = [
       height="100%"
       viewBox="0 0 21 21"
       fill="none"
-      class="app-gr-img"
+      className="app-gr-img"
     >
       <circle
         cx="10"
@@ -89,7 +89,7 @@ const svgss = [
     height="100%"
     viewBox="0 0 21 21"
     fill="none"
-    class="app-gr-img"
+    className="app-gr-img"
   >
     <circle
       cx="10"
@@ -166,37 +166,7 @@ export default function HoverBtn({ cardClass = "", buttonName, index, onClick })
           lg:w-[30px] lg:h-[30px]
         `}
       >
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="100%"
-          height="100%"
-          viewBox="0 0 20 20"
-          preserveAspectRatio="none"
-          fill="none"
-          className="app-gr-img"
-        >
-          <circle
-            cx="10"
-            cy="10"
-            r="10"
-            fill="url(#paint0_radial_820_315)"
-          ></circle>
-          <defs>
-            <radialGradient
-              id="paint0_radial_820_315"
-              cx="0"
-              cy="0"
-              r="1"
-              gradientUnits="objectBoundingBox"
-              spreadMethod="pad"
-              gradientTransform="translate(0.25 0.95) rotate(-54.2933) scale(0.985 0.728)"
-            >
-              <stop stopColor="#FF9A2B"></stop>
-              <stop offset="0.615993" stopColor="#FFDFCF"></stop>
-              <stop offset="1" stopColor="#FFAD37"></stop>
-            </radialGradient>
-          </defs>
-        </svg> */}
+        
         <SvgDisplay index={index} />
 
       </div>

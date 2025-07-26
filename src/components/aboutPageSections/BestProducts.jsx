@@ -1,25 +1,3 @@
-// import React, { useEffect, useRef } from "react";
-// import { gsap } from "gsap";
-// import ProductCard from "../productsSection/ProductCard";
-
-// const BestProducts = ({ products }) => {
-
-
-
-//   return (
-//   <div>
-//         {products.map((product, i) => (
-//               <ProductCard key={i || product.name} productDet={product} index={i} />
-//             ))}
-//   </div>
-//   );
-// };
-
-// export default BestProducts;
-
-
-
-
 import React, { useState } from 'react';
 import {  Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';

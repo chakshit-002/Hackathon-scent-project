@@ -9,43 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Section3 = () => {
   const sectionRef = useRef(null);
 
-  // useEffect(() => {
-  //   const elements = textRef.current.children;
-
-  //   // GSAP animation
-  //   const anim = gsap.fromTo(
-  //     elements,
-  //     { y: 50, opacity: 0 },
-  //     {
-  //       y: 0,
-  //       opacity: 1,
-  //       stagger: 0.15,
-  //       duration: 1,
-  //       ease: "power3.out",
-  //       scrollTrigger: {
-  //         trigger: textRef.current,
-  //         start: "top 80%",
-  //         toggleActions: "play none none reset",
-  //         scrub: 1, // make scroll scrub-enabled
-  //       },
-  //     }
-  //   );
-
-  //   // Refresh ScrollTrigger after window load
-  //   const handleLoad = () => {
-  //     // ScrollTrigger.refresh();
-  //   };
-
-  //   window.addEventListener("load", handleLoad);
-
-  //   // Cleanup
-  //   return () => {
-  //     // if (anim.scrollTrigger) anim.scrollTrigger.kill();
-  //     // anim.kill();
-  //     window.removeEventListener("load", handleLoad);
-  //     // ScrollTrigger.refresh();
-  //   };
-  // }, []);
   
   useEffect(()=>{
     const elems = sectionRef.current.querySelectorAll('.fade-in')

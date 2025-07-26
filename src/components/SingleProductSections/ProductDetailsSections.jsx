@@ -9,17 +9,14 @@ import BackButton from "../BackButton";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
-// const HERO_IMG =
-//     "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=1200&q=80";
 
-// // Example alternate image for hover effect
-// const HOVER_IMG =
-//     "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80";
 
 const ProductDetailsSections = () => {
     const { state } = useLocation();
     const { productDet } = state;
     const [isFavorited, setIsFavorited] = useState(false);
+    
+
 
     useEffect(() => {
         const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -209,7 +206,3 @@ export default ProductDetailsSections;
 
 
 
-//  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-{/* Decorative blur circle for high-end look */ }
-{/* <div className="w-72 h-72 md:w-[420px] md:h-[420px] bg-rose-30 rounded-full blur-3xl opacity-100"></div> */ }
-{/* </div> */ }
