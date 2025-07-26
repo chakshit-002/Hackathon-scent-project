@@ -1,12 +1,47 @@
-# React + Vite
+# David Beckham Signature Scents 🌿
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the official GitHub repository for **David Beckham Signature Scents**, a modern and visually rich website that showcases the essence of luxury and charisma through a premium fragrance collection.
 
-Currently, two official plugins are available:
+🚀 [Live Demo](https://davidbeckham-signaturescents.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 💡 About the Project
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This website is a tribute to David Beckham’s iconic line of fragrances. Designed with a sleek, elegant aesthetic and smooth animations, it offers an immersive user experience that reflects the style and sophistication of the brand.
+
+---
+
+## 🧩 Features
+
+- ✨ Fully responsive and mobile-friendly design
+- 💨 GSAP-powered animations for rich visual transitions
+- ❤️ Favorite products with localStorage support
+- 🛒 Add to Cart functionality with persistent storage
+- 🔍 Zoom effect on product images
+- 📂 Detailed product pages with scent profiles and categories
+- 🔄 Related products carousel for enhanced discovery
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend**: React.js + Vite
+- **Styling**: Tailwind CSS
+- **Animations**: GSAP (GreenSock Animation Platform)
+- **Image Zoom**: `react-lens-image`
+- **Routing**: React Router
+- **State Management**: React hooks + localStorage
+
+---
+
+## 📁 Folder Structure
+
+
+src/
+├── assets/            # Images and icons
+├── components/        # Reusable UI components
+├── pages/             # Page-level components (Home, Product Details, Cart, etc.)
+├── data/              # Static product data (can be replaced with backend/API)
+├── App.jsx            # Root component
+└── main.jsx           # Entry point
