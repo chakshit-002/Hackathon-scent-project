@@ -155,7 +155,7 @@ export default function HeroVideo() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[200vh] bg-gray-950 overflow-hidden flex items-center justify-center font-[cinzel]"
+      className="relative h-[160vh] bg-gray-950 overflow-hidden flex items-center justify-center font-[cinzel]"
       style={{ perspective: "1800px" }}
     >
       <section className='w-[100%] h-[100vh] absolute top-40' ref={heroRef}>

@@ -3,7 +3,7 @@ import React from 'react'
 import Mainroutes from './routes/Mainroutes'
 import MenuBtn from './components/NavElement/MenuBtn'
 import Footer from './components/Footer'
-import SplashCursor from './blocks/SplashCursor/SplashCursor'
+
 
 
 
@@ -12,7 +12,7 @@ const App = () => {
     // p-3 lg:p-10
     <div className=' relative min-h-[100vh] w-[100%] bg-[#181817] outline outline-offset-2'>
       <MenuBtn/>
-      <SplashCursor/>
+     
       {/* <Nav/> */}
       <Mainroutes/>
       <Footer/>

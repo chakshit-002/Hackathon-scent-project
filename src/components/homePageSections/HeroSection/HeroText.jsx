@@ -65,7 +65,7 @@ const Letter = ({ char, dir }) => {
       <span
       ref={letterRef}
       className="relative inline-block overflow-hidden w-fit text-center select-none text-[7.2vw] min-[370px]:text-[8vw]  
-                  min-[470px]:text-[9vw] sm:text-[10vw] md:text-[11vw] 2xl:text-[min(11.4vw,180px)] "
+                  min-[470px]:text-[9vw] sm:text-[50px] md:text-[65px] lg:text-[85px] xl:text-[110px] 2xl:text-[min(8.5vw,180px)] "
       // style={{ minWidth: "25px" }}
       onMouseEnter={animateLetter}
     >
@@ -79,8 +79,8 @@ const Letter = ({ char, dir }) => {
 const HeroText = ({HerotextName}) => {
   const text = HerotextName;
   return (
-    <div className=" flex items-center justify-center ">
-      <div className="text-white font-extrabold text-5xl flex gap-2 overflow-hidden">
+    <div className=" flex items-center justify-center px-3">
+      <div className="text-white font-extrabold text-5xl flex gap-1 overflow-hidden sm:gap-2">
         {Array.from(text).map((char, i) =>
           char === " " ? (
             <span key={i} className="mx-1 md:mx-2 lg:mx-3 xl:mx-4 2xl:mx-5" />

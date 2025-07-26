@@ -15,6 +15,7 @@ import Testimonials from '../components/homePageSections/Testimonials'
 import { HyperText } from '../components/aboutPageSections/HyperText';
 import PixelImage from '../components/aboutPageSections/PixelImage';
 import daviBeck from '../assets/webpImagesPerfume/davidBeckham2.webp'
+import SplashCursor from '../blocks/SplashCursor/SplashCursor'
 const Home = () => {
 
     const hasScrolledToTop = useRef(false);
@@ -30,7 +31,7 @@ const Home = () => {
     return (
         <div className='relative text-[#dcd8f6] w-[100%] min-h-[100vh] overflow-hidden'>
 
-
+             <SplashCursor/>
             <HeroVideo />
 
 

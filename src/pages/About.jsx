@@ -11,7 +11,7 @@ import { BestProductsDets, MenPerfumes } from '../components/Data/productsDetail
 import BehindTheScenes from '../components/aboutPageSections/BehindTheScenes';
 import NewsletterSection from '../components/aboutPageSections/NewsletterSection';
 import ProductsCarousel from '../components/ProductsCarousel';
-
+import SplashCursor from '../blocks/SplashCursor/SplashCursor'
 
 const About = () => {
   const hasScrolledToTop = useRef(false);
@@ -27,7 +27,7 @@ const About = () => {
 
   return (
     <div className='min-h-[100vh] bg-[#f8f7ec] mx-auto flex flex-col items-center  '>
-
+      <SplashCursor />
       <VideoMarquee />
       <div className='w-full flex flex-col   gap-19  sm:gap-26 md:gap-30  lg:gap-38  xl:gap-48'>
         <AboutDavid />
@@ -38,8 +38,8 @@ const About = () => {
         <BehindTheScenes />
         <NewsletterSection />
       </div>
-       <div className='font-[cinzel] tracking-wide sm:px-5 flex flex-col items-center  mt-10 sm:mt-15 md:mt-18 xl:mt-25 2xl:mt-34'>
-        <h2  className='text-center text-[#2f2f2f] text-3xl font-semibold min-[333px]:text-4xl min-[450px]:text-5xl sm:text-6xl xl:text-7xl 2xl:text-8xl'>Best Products</h2>
+      <div className='font-[cinzel] tracking-wide sm:px-5 flex flex-col items-center  mt-10 sm:mt-15 md:mt-18 xl:mt-25 2xl:mt-34'>
+        <h2 className='text-center text-[#2f2f2f] text-3xl font-semibold min-[333px]:text-4xl min-[450px]:text-5xl sm:text-6xl xl:text-7xl 2xl:text-8xl'>Best Products</h2>
         <ProductsCarousel />
       </div>
     </div>

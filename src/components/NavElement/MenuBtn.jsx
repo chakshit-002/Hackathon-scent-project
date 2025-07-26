@@ -90,13 +90,13 @@ const MenuBtn = () => {
         onMouseLeave={handleMouseLeave}
         className={`group overflow-hidden cursor-pointer fixed z-[999] flex items-center justify-center gap-2 transition-all duration-300
           ${isMobile ?
-            'w-[60px] h-[60px] rounded-full top-[40px] right-[35px] bg-black text-white' :
-            'h-[80px] px-6 rounded-3xl top-[50px] right-[50px] bg-black text-white lg:h-[90px] '
+            'w-[60px] h-[60px] rounded-full top-[40px] right-[35px] bg-[#e56138] text-white' :
+            'h-[80px] px-6 rounded-3xl top-[50px] right-[50px] bg-[#e56138] text-white lg:h-[90px] '
           }`}
       >
         {/* Animated background layers */}
         <div className="absolute inset-0 pointer-events-none">
-          {["bg-pink-500", "bg-yellow-300", "bg-green-400"].map((color, index) => (
+          {["bg-[#edd4f8]", "bg-[#f8f7ec]", "bg-[#2d5a36]"].map((color, index) => (
             <div
               key={index}
               ref={el => layerRefs.current[index] = el}

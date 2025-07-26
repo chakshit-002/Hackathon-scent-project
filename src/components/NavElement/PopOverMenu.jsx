@@ -114,7 +114,7 @@ const PopOverMenu = () => {
     return (
         <div
             ref={menuRef}
-            className='absolute z-50 bg-amber-400 w-full h-[630px] rounded-[30px] px-12 py-10 sm:w-[65%] sm:top-4 sm:right-4 md:h-[720px] md:px-15 lg:top-4 lg:right-5 lg:w-[600px] lg:h-[780px] xl:w-[700px] xl:h-[850px]'
+            className='absolute z-50 bg-[#2d5a36] text-[#f8f7ec] w-full h-[630px] rounded-[30px] px-12 py-10 sm:w-[65%] sm:top-4 sm:right-4 md:h-[720px] md:px-15 lg:top-4 lg:right-5 lg:w-[600px] lg:h-[780px] xl:w-[700px] xl:h-[850px]'
         >
             <div className=' flex flex-col gap-3 text-3xl mt-14 md:mt-20 md:text-4xl md:gap-4 lg:gap-5 xl:text-5xl lg:mt-25'>
                 {navItems.map((item, idx) => (
@@ -166,7 +166,7 @@ const PopOverMenu = () => {
                         <span
                             key={idx}
                             ref={el => childRefs.current[6 + idx] = el}
-                            className='w-fit rounded-full flex items-center justify-center px-3 py-2 bg-white'
+                            className='w-fit rounded-full flex items-center justify-center px-3 py-2 bg-white text-[#181817]'
                         >
                             <a href="https://instagram.com/veritte.royal" target="_blank" rel="noopener noreferrer">
                                 <i className={`ri-${icon} text-2xl`}></i>
@@ -183,7 +183,7 @@ const PopOverMenu = () => {
                         <i className="ri-phone-line text-xl"></i> +919876543210
                     </a>
                     <a href="mailto:hello@example.com">
-                        <i className="ri-mail-line"></i> hello@example.com
+                        <i className="ri-mail-line"></i> David@BeckhamScents.com
                     </a>
                 </div>
 

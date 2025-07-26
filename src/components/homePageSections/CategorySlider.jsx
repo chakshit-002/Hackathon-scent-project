@@ -1,44 +1,43 @@
 
 
+
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
-import man8a from '../../assets/webpImagesPerfume/man8a.webp'
-import man1 from '../../assets/webpImagesPerfume/man1.webp'
-import man15 from '../../assets/webpImagesPerfume/man15.webp'
-import man8 from '../../assets/webpImagesPerfume/man8.webp'
-import man13 from '../../assets/webpImagesPerfume/man14.webp'
-import man14 from '../../assets/webpImagesPerfume/man13.webp'
-import david from '../../assets/webpImagesPerfume/david.webp'
-import davidboy from '../../assets/webpImagesPerfume/davidboy.webp'
-import beckham from '../../assets/webpImagesPerfume/beckham.webp'
+import man8a from "../../assets/webpImagesPerfume/man8a.webp";
+import man1 from "../../assets/webpImagesPerfume/man1.webp";
+import man15 from "../../assets/webpImagesPerfume/man15.webp";
+import man8 from "../../assets/webpImagesPerfume/man8.webp";
+import man13 from "../../assets/webpImagesPerfume/man14.webp";
+import man14 from "../../assets/webpImagesPerfume/man13.webp";
+import david from "../../assets/webpImagesPerfume/david.webp";
+import davidboy from "../../assets/webpImagesPerfume/davidboy.webp";
+import beckham from "../../assets/webpImagesPerfume/beckham.webp";
 const categories = [
   {
     category: "Category 1",
     name: "Male",
     img: man8,
-    bg: man15
+    bg: man15,
   },
   {
     category: "Category 2",
     name: "Woman",
     img: man1,
-    bg: man8a
+    bg: man8a,
   },
   {
     category: "Category 3",
     name: "Unisex",
     img: man14,
-    bg: man13
+    bg: man13,
   },
   {
     category: "David Beckham",
     name: "Signature Scents",
     img: davidboy,
-    bg: david
+    bg: david,
   },
 ];
-
-
 
 export default function CategorySlider() {
   const [active, setActive] = useState(0);
@@ -47,12 +46,11 @@ export default function CategorySlider() {
   const sectionRef = useRef();
   const observerRef = useRef();
 
-  // Refs for animation
+  // Animation refs
   const textRefs = useRef([]);
   const nameRefs = useRef([]);
   const imageRefs = useRef([]);
   const bgRefs = useRef([]);
-  // To prevent immediate relock after unlock
   const skipNextLock = useRef(false);
 
   // Responsive
@@ -64,17 +62,16 @@ export default function CategorySlider() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Fix-on-scroll (Intersection Observer)
+  // Intersection Observer lock
   useEffect(() => {
     if (!sectionRef.current) return;
     if (observerRef.current) observerRef.current.disconnect();
 
     observerRef.current = new window.IntersectionObserver(
       ([entry]) => {
-        // Only lock if NOT skipping lock (after unlock)
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.98) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.87) {
           if (skipNextLock.current) {
-            skipNextLock.current = false; // Reset flag
+            skipNextLock.current = false;
             return;
           }
           setLocked(true);
@@ -84,7 +81,7 @@ export default function CategorySlider() {
           document.body.style.overflow = "";
         }
       },
-      { threshold: [0, 0.98, 1] }
+      { threshold: [0, 0.87, 1] }
     );
     observerRef.current.observe(sectionRef.current);
     return () => {
@@ -93,7 +90,7 @@ export default function CategorySlider() {
     };
   }, []);
 
-  // GSAP animations (unchanged, as before)
+  // GSAP
   useEffect(() => {
     categories.forEach((cat, i) => {
       if (isDesktop) {
@@ -133,7 +130,6 @@ export default function CategorySlider() {
   }, [active, isDesktop]);
 
   // Navigation
-  // Navigation with Looping
   const next = useCallback(() => {
     if (!locked) return;
     setActive((a) => (a + 1) % categories.length);
@@ -144,29 +140,51 @@ export default function CategorySlider() {
     setActive((a) => (a - 1 + categories.length) % categories.length);
   }, [locked]);
 
-
-  // --- Improved unlock logic ---
+  // Unlock logic
   const unlockAndScrollAway = useCallback((direction = "down") => {
-    // Prevent IntersectionObserver from immediately relocking (skip flag)
     skipNextLock.current = true;
     setLocked(false);
     document.body.style.overflow = "";
-
-    // Scroll out of the lock zone so observer doesn't fire a re-lock
     setTimeout(() => {
       const section = sectionRef.current;
       if (section) {
         const rect = section.getBoundingClientRect();
         const scrollBy =
           direction === "up"
-            ? rect.top - 80 // scroll so section top is above viewport
-            : rect.bottom - window.innerHeight + 80; // scroll so section bottom is below viewport
+            ? rect.top - 80
+            : rect.bottom - window.innerHeight + 80;
         window.scrollBy({ top: scrollBy, behavior: "smooth" });
       }
     }, 40);
   }, []);
 
-  // Scroll/Key/Touch Navigation & unlock logic
+  // Touch handling using ref
+  const touchStartYRef = useRef(null);
+
+  function handleTouchStart(e) {
+    if (!locked) return;
+    touchStartYRef.current = e.touches[0].clientY;
+  }
+  function handleTouchEnd(e) {
+    if (!locked) return;
+    if (touchStartYRef.current == null) return;
+
+    const touchEndY = e.changedTouches[0].clientY;
+    const diff = touchStartYRef.current - touchEndY;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && active < categories.length - 1)
+        setActive((a) => Math.min(a + 1, categories.length - 1));
+      else if (diff < 0 && active > 0)
+        setActive((a) => Math.max(a - 1, 0));
+      else if (diff > 0 && active >= categories.length - 1)
+        unlockAndScrollAway("down");
+      else if (diff < 0 && active <= 0)
+        unlockAndScrollAway("up");
+    }
+    touchStartYRef.current = null;
+  }
+
+  // Scroll/Key Navigation & unlock
   useEffect(() => {
     if (!locked) return;
 
@@ -175,7 +193,6 @@ export default function CategorySlider() {
       if (Math.abs(e.deltaY) < 10 || scrollBlocked) return;
       setScrollBlocked(true);
 
-      // At end? Unlock, else next slide
       if (e.deltaY > 0 && active < categories.length - 1) {
         setActive((a) => Math.min(a + 1, categories.length - 1));
       } else if (e.deltaY < 0 && active > 0) {
@@ -192,65 +209,46 @@ export default function CategorySlider() {
     const handleKey = (e) => {
       if (!locked) return;
       if (
-        ((e.key === "ArrowDown" || e.key === "PageDown") && active < categories.length - 1)
+        (e.key === "ArrowDown" || e.key === "PageDown") &&
+        active < categories.length - 1
       ) {
         setScrollBlocked(true);
         setActive((a) => Math.min(a + 1, categories.length - 1));
         setTimeout(() => setScrollBlocked(false), 450);
         e.preventDefault();
       } else if (
-        ((e.key === "ArrowUp" || e.key === "PageUp") && active > 0)
+        (e.key === "ArrowUp" || e.key === "PageUp") &&
+        active > 0
       ) {
         setScrollBlocked(true);
         setActive((a) => Math.max(a - 1, 0));
         setTimeout(() => setScrollBlocked(false), 450);
         e.preventDefault();
       } else if (
-        (e.key === "ArrowDown" || e.key === "PageDown") && active >= categories.length - 1
+        (e.key === "ArrowDown" || e.key === "PageDown") &&
+        active >= categories.length - 1
       ) {
         unlockAndScrollAway("down");
         e.preventDefault();
       } else if (
-        (e.key === "ArrowUp" || e.key === "PageUp") && active <= 0
+        (e.key === "ArrowUp" || e.key === "PageUp") &&
+        active <= 0
       ) {
         unlockAndScrollAway("up");
         e.preventDefault();
       }
     };
 
-    // Touch
-    let touchStart = null, touchEnd = null;
-    function handleTouchStart(e) { touchStart = e.changedTouches[0].clientY; }
-    function handleTouchEnd(e) {
-      touchEnd = e.changedTouches[0].clientY;
-      const diff = touchStart - touchEnd;
-      if (Math.abs(diff) > 40) {
-        if (diff > 0 && active < categories.length - 1)
-          setActive((a) => Math.min(a + 1, categories.length - 1));
-        else if (diff < 0 && active > 0)
-          setActive((a) => Math.max(a - 1, 0));
-        else if (diff > 0 && active >= categories.length - 1)
-          unlockAndScrollAway("down");
-        else if (diff < 0 && active <= 0)
-          unlockAndScrollAway("up");
-      }
-      touchStart = null; touchEnd = null;
-    }
-
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKey, { passive: false });
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("keydown", handleKey);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [locked, scrollBlocked, active, unlockAndScrollAway]);
 
-  // --------- UI (Same as your code, omitted for brevity) ---------
+  // --------- UI Components (unchanged) ---------
   function MobileStack() {
     return (
       <div className="flex flex-col items-center justify-center w-full pt-16 pb-16 relative" style={{ minHeight: "100vh" }}>
@@ -325,7 +323,7 @@ export default function CategorySlider() {
                 key={i}
                 className={`categ-index text-lg lg:text-2xl font-mono transition-all duration-300 ${i === active ? "text-yellow-400 scale-110" : "text-gray-500"}`}
                 style={{ fontSize: '1.4rem' }}
-              >{("0" + (i + 1)).slice(-2)}</div>
+                >{("0" + (i + 1)).slice(-2)}</div>
             ))}
           </div>
           <div className="categ-center-images relative w-[320px] md:w-[370px] xl:w-[420px] aspect-square shadow-2xl rounded-3xl overflow-hidden flex items-center justify-center">
@@ -351,7 +349,7 @@ export default function CategorySlider() {
                 key={i}
                 className={`categ-index text-lg lg:text-2xl font-mono transition-all duration-300 ${i === active ? "text-yellow-400 scale-110" : "text-gray-500"}`}
                 style={{ fontSize: '1.4rem' }}
-              >{("0" + (i + 1)).slice(-2)}</div>
+                >{("0" + (i + 1)).slice(-2)}</div>
             ))}
           </div>
           <div className="categ-right flex-col space-y-7 flex-1 min-w-[160px] items-end justify-center hidden lg:flex" style={{ maxWidth: 240 }}>
@@ -371,7 +369,7 @@ export default function CategorySlider() {
                   fontSize: "1.5rem",
                   textAlign: "right",
                 }}
-              >{cat.name}</div>
+                >{cat.name}</div>
             ))}
           </div>
         </div>
@@ -379,24 +377,26 @@ export default function CategorySlider() {
     );
   }
 
-  // --- Component Render ---
+  // --- Render ---
   return (
     <section
       ref={sectionRef}
       style={
         locked
           ? {
-            position: "fixed",
-            inset: 0,
-            zIndex: 50,
-            width: "100vw",
-            height: "100vh",
-          }
+              position: "fixed",
+              inset: 0,
+              zIndex: 50,
+              width: "100vw",
+              height: "100vh",
+            }
           : { position: "relative", minHeight: "100vh" }
       }
-      className="parent flex items-center justify-center bg-black select-none touch-none font-[cinzel]"
+      // removed touch-none!
+      className="parent flex items-center justify-center bg-black select-none font-[cinzel]"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* ... BG and content unchanged ... */}
       <div className="bgSlidePart w-full h-full absolute inset-0 pointer-events-none -z-10">
         {categories.map((cat, i) => (
           <img
@@ -427,14 +427,13 @@ export default function CategorySlider() {
           className={`py-2 px-5 bg-gray-800 text-white rounded-xl hover:bg-gray-700 text-base lg:text-lg active:scale-90 transition bg-gradient-to-r from-blue-500 via-purple-400 to-pink-400`}
           disabled={!locked}
         >Prev</button>
-
         <button
           onClick={next}
           className={`py-2 px-5 bg-gradient-to-r from-blue-500 via-purple-400 to-pink-400 text-black rounded-xl hover:bg-yellow-400 text-base lg:text-lg active:scale-90 transition`}
           disabled={!locked}
         >Next</button>
-
       </div>
     </section>
   );
 }
+

@@ -64,7 +64,7 @@ export default function ProductTab() {
         ref={contentRef}
         className="mt-5 sm:mt-8 md:mt-10 lg:mt-14 bg-white rounded-xl shadow-lg w-full max-w-[1600px] mx-auto p-6 flex flex-col items-center pb-20"
       >
-        <h3 className="text-[25px] font-semibold mt-2 mb-8 min-[400px]:text-[35px] sm:mt-8 sm:mb-13 sm:text-[39px] md:text-[45px] lg:text-[60px] lg:mt-13 lg:mb-16 text-center">
+        <h3 className="text-[#c193cf] text-[25px] font-semibold mt-2 mb-8 min-[400px]:text-[35px] sm:mt-8 sm:mb-13 sm:text-[39px] md:text-[45px] lg:text-[60px] lg:mt-13 lg:mb-16 text-center">
           {tabData.find((t) => t.id === activeTab).label} Products
         </h3>
 
